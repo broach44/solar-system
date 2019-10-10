@@ -1,4 +1,10 @@
+import planet from './components/planetCards/planetCards';
+
 import 'bootstrap';
 import '../styles/main.scss';
 
-console.log('hi there');
+const init = () => {
+  planet.planetPrinter();
+};
+
+init();
