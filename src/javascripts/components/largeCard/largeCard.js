@@ -1,22 +1,15 @@
 import $ from 'jquery';
 import utilities from '../../helpers/utilities';
-import planetCards from '../planetCards/planetCards';
 import planets from '../../helpers/data/planets';
 
 import './largeCard.scss';
-
-// TODO: Everything is functional except the listener needs to be reattached to the cards when they are reprinted
 
 const planetList = planets.getPlanets();
 
 let currentPlanet;
 
-// function to loop through planets and compare the names of the planets to the one that was clicked
-
-
-// then pass that planet into the printer function
-
 const largeCardPrinter = () => {
+  $('#planet-cards').toggleClass('d-none');
   const domString = `
   <div class="container">
     <div class="card largeCard">
@@ -27,23 +20,18 @@ const largeCardPrinter = () => {
     </div>
   </div>
   `;
-  utilities.printToDom('planet-cards', domString);
+  utilities.printToDom('largeCardContainer', domString);
+  $('#largeCardContainer').toggleClass('d-none');
 };
 
 const closeLargeCardEvent = () => {
-  planetCards.planetPrinter();
-  planetCards.addListen();
-  // need to add the cardListener each time this is printed...can't add here because function it calls is created below.
+  $('#planet-cards').toggleClass('d-none');
+  $('#largeCardContainer').toggleClass('d-none');
 };
 
 const closeListener = () => {
   $('.closebutton').on('click', closeLargeCardEvent);
 };
-
-// const pickPlanet = (event) => {
-//   const selection = event.target;
-//   console.log(selection);
-// };
 
 const createLargeCardEvent = (event) => {
   const selection = event.target;
