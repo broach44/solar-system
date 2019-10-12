@@ -1,17 +1,28 @@
 import $ from 'jquery';
 import utilities from '../../helpers/utilities';
 import planetCards from '../planetCards/planetCards';
-// import planets from '../../helpers/data/planets';
+import planets from '../../helpers/data/planets';
 
 import './largeCard.scss';
+
+// TODO: Everything is functional except the listener needs to be reattached to the cards when they are reprinted
+
+const planetList = planets.getPlanets();
+
+let currentPlanet;
+
+// function to loop through planets and compare the names of the planets to the one that was clicked
+
+
+// then pass that planet into the printer function
 
 const largeCardPrinter = () => {
   const domString = `
   <div class="container">
     <div class="card largeCard">
-      <h1>Planet Name</h1>
-      <img src="https://space-facts.com/wp-content/uploads/mercury.png" alt="planet image">
-      <p>Planet Description</p>
+      <h1>${currentPlanet.name}</h1>
+      <img src="${currentPlanet.image}" alt="${currentPlanet.name} image">
+      <p>${currentPlanet.description}</p>
       <button class="btn btn-danger btn-sm closebutton">X</button>
     </div>
   </div>
@@ -19,18 +30,40 @@ const largeCardPrinter = () => {
   utilities.printToDom('planet-cards', domString);
 };
 
-// add listener for clicking on the div to enlarge
-
-// add function event that will erase all of the planet cards and only print the large selected planet card
-
-// create function to close out large card and reprint the other planet cards
-const closeLargeCard = () => {
+const closeLargeCardEvent = () => {
   planetCards.planetPrinter();
   planetCards.addListen();
+  // need to add the cardListener each time this is printed...can't add here because function it calls is created below.
 };
 
 const closeListener = () => {
-  $('.closebutton').on('click', closeLargeCard);
+  $('.closebutton').on('click', closeLargeCardEvent);
 };
 
-export default { largeCardPrinter, closeListener };
+// const pickPlanet = (event) => {
+//   const selection = event.target;
+//   console.log(selection);
+// };
+
+const createLargeCardEvent = (event) => {
+  const selection = event.target;
+  const planetName = $(selection).attr('id');
+  for (let i = 0; i < planetList.length; i += 1) {
+    const planet = planetList[i];
+    if (planet.name === planetName) {
+      currentPlanet = planet;
+    }
+  }
+  largeCardPrinter();
+  closeListener();
+};
+
+const cardListener = () => {
+  const pCards = ($('.planet-card'));
+  for (let i = 0; i < pCards.length; i += 1) {
+    const currentCard = pCards[i];
+    $(currentCard).on('click', createLargeCardEvent);
+  }
+};
+
+export default { largeCardPrinter, cardListener };

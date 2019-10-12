@@ -13,9 +13,8 @@ const planetPrinter = () => {
     domString += `
     <div class="col-4">
       <div class="card planet-card">
-        <img src="${planetList[i].image}" class="card-img-top planet-img" id="${planetList[i].name}-image" alt="${planetList[i].name}-image">
+        <img src="${planetList[i].image}" class="card-img-top planet-img" id="${planetList[i].name}" alt="${planetList[i].name}-image">
           <h2 class="card-title text-center" id="${planetList[i].name}-title">${planetList[i].name}</h2>
-         
       </div>
     </div>
     `;

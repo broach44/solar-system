@@ -7,8 +7,7 @@ import '../styles/main.scss';
 const init = () => {
   planet.planetPrinter();
   planet.addListen();
-  large.largeCardPrinter();
-  large.closeListener();
+  large.cardListener();
 };
 
 init();
