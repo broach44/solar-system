@@ -1,7 +1,6 @@
 .container {
 
-
-  .card {
+  .planet-card {
     padding: 0;
     width: 300px;
     height: 300px;
@@ -14,7 +13,6 @@
 
     .card-title {
       align-self: center;
-      visibility: visible;  
       position: absolute;  
     }
   }
@@ -23,4 +21,5 @@
 .planet-img {
   width: 300px;
   height: 300px;
-  visibility: hidden}
+  pointer-events: none;
+}
