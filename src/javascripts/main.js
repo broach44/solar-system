@@ -5,6 +5,7 @@ import '../styles/main.scss';
 
 const init = () => {
   planet.planetPrinter();
+  planet.addListen();
 };
 
 init();
