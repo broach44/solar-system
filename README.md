@@ -18,11 +18,11 @@ If the user wishes, they can use the search feature at the top to type text.  Th
 - Features a couple advanced array methods in place of standard "for" loops
 ## Screenshots
 #### Main View:
-
+![main-view](https://raw.githubusercontent.com/broach44/solar-system/master/screenshots/main-view.PNG)
 #### Search View:
-
+![search-view](https://raw.githubusercontent.com/broach44/solar-system/master/screenshots/search-feature.PNG)
 #### Large Card View:
-
+![lare-card-view](https://raw.githubusercontent.com/broach44/solar-system/master/screenshots/large-card-view.PNG)
 ## How to Run
 - Clone down this project
 - Install http-server from npm [here](https://www.npmjs.com/package/http-server)
