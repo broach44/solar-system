@@ -2,16 +2,22 @@ import $ from 'jquery';
 import planets from '../../helpers/data/planets';
 import utilities from '../../helpers/utilities';
 import planetCards from '../planetCards/planetCards';
-// import largeCard from '../largeCard/largeCard';
+import largeCard from '../largeCard/largeCard';
+
+import './searchbar.scss';
 
 const planetArr = planets.getPlanets();
 
-// TODO: print a search bar to the dom
+const printSearchBar = () => {
+  const domString = `
+  <form class="form-inline">
+    <input id="myInput" class="form-control" type="search" placeholder="Search" aria-label="Search">
+  </form>`;
+  utilities.printToDom('search-bar', domString);
+};
 
 
-// gather the input from the search field
 const searchEvent = (e) => {
-  // below is grabbing the input value
   const value = e.target.value.toLowerCase();
   const filterPlanets = planetArr.filter((x) => x.name.toLowerCase() === value || x.description.toLowerCase().includes(value));
   let domString = `
@@ -30,21 +36,19 @@ const searchEvent = (e) => {
   domString += '</div>';
   utilities.printToDom('planet-cards', domString);
   planetCards.addListen();
-  // largeCard.largeCardPrinter();
-  // largeCard.cardListener();
+  largeCard.cardListener();
 };
 
-// if ($('.planet-cards h2').value !== newPlanetNames()) {
-//   this.hide();
-// };
+// largeCard.largeCardPrinter();
+// largeCard.cardListener();
 
-// search through the planet array
-// use the object name to display the correct cards
-// else hide the cards
-
-// loop through the array of objects and compare with the input received in the search field
 const searchListener = () => {
   $('#myInput').on('keyup', searchEvent);
 };
 
-export default { searchListener };
+const init = () => {
+  printSearchBar();
+  searchListener();
+};
+
+export default { init };

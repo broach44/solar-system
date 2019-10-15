@@ -9,7 +9,7 @@ const init = () => {
   planet.planetPrinter();
   planet.addListen();
   large.cardListener();
-  searchbar.searchListener();
+  searchbar.init();
 };
 
 init();
